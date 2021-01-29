@@ -28,7 +28,7 @@ class SessionController < ApplicationController
   end
 
   def dashboard
-    render json: { stuffToDisplay: "you made it here!" }
+    render json: { content: "you made it here!" }
   end
 
   private

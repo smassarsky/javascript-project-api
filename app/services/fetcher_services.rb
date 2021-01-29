@@ -62,6 +62,13 @@ module FetcherServices
       end
     end
 
+    def self.fix_games
+      Game.all.each do |game|
+        game.cover_url = game.cover_url.gsub(/t_thumb/, "t_720p")
+        game.save
+      end
+    end
+
   end
 
   class CompaniesFetcher
