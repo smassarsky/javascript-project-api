@@ -17,7 +17,17 @@ class UserGameSerializer
 
   def show_to_serialized_json
     options = {
-
+      include: {
+        game: {
+          only: [:id]
+        },
+        tasks: {
+          only: [:id, :name]
+        },
+        loadouts: {
+          only: [:id, :name]
+        }
+      }
     }
     @user_game.to_json(options)
   end

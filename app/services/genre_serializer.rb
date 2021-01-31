@@ -8,7 +8,7 @@ class GenreSerializer
     options = {
       only: [:name]
     }
-    @company.to_json(options)
+    @genre.to_json(options)
   end
 
 end

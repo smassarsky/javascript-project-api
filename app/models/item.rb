@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
  belongs_to :user_game
+ has_one :user, through: :user_game
 
  has_many :loadout_items
  has_many :loadouts, through: :loadout_items

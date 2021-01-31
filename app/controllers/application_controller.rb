@@ -12,4 +12,18 @@ class ApplicationController < ActionController::API
     render json: { error: 'Not Authorized' }, status: 401 unless @current_user
   end
 
+  def owner?(thing)
+    @current_user == thing.user
+  end
+
+  def exists_and_owner?(thing)
+    if thing && owner?(thing)
+      true
+    elsif thing
+      render json: { error: "Not Authorized"}, status: 403
+    else
+      render json: { error: "Not Found"}, status: 404
+    end
+  end
+
 end
