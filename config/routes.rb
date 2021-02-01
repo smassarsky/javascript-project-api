@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   resources :user_games, only: [:index, :show, :create, :destroy]
 
-  resources :loadouts, only: [:show, :create, :update, :destroy]
+  resources :loadouts, only: [:show, :create, :update, :destroy] do 
+    resources :items, only: [:index]
+  end
 
   resources :tasks, only: [:show, :create, :update, :destroy]
 

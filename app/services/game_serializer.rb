@@ -13,7 +13,7 @@ class GameSerializer
 
   def show_to_serialized_json
     options = {
-      include: [:publishers, :developers],
+      include: [:publishers, :developers, :genres],
       only: [:id, :name, :release_date, :url, :cover_url]
     }
     @game.to_json(options)

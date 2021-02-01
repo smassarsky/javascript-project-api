@@ -47,4 +47,3 @@ gem 'jwt'
 
 # simple_command authentication / authorization
 gem 'simple_command'
-

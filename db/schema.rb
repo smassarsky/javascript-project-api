@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_021800) do
+ActiveRecord::Schema.define(version: 2021_01_31_190045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_021800) do
 
   create_table "ingredients", force: :cascade do |t|
     t.integer "recipe_id"
-    t.integer "item_id"
+    t.integer "reagent_id"
     t.integer "quantity"
   end
 
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_021800) do
   create_table "items", force: :cascade do |t|
     t.integer "user_game_id"
     t.string "name"
-    t.string "description"
+    t.string "note"
   end
 
   create_table "loadout_items", force: :cascade do |t|
