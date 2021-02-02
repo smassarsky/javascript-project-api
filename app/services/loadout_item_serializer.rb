@@ -7,7 +7,8 @@ class LoadoutItemSerializer
   def to_serialized_json
     puts @loadout_item
     options = {
-      include: [:item, :quantity]
+      include: [:item],
+      except: [:loadout_id]
     }
     @loadout_item.to_json(options)
   end

@@ -11,11 +11,13 @@ Rails.application.routes.draw do
   resources :user_games, only: [:index, :show, :create, :destroy]
 
   resources :loadouts, only: [:show, :create, :update, :destroy] do 
-    resources :items, only: [:index]
+    resources :loadout_items, only: [:index, :create]
   end
 
   resources :tasks, only: [:show, :create, :update, :destroy]
 
   resources :items, only: [:create, :update, :destroy]
+
+  resources :loadout_items, only: [:update, :destroy]
 
 end

@@ -9,4 +9,13 @@ class Item < ApplicationRecord
   has_many :ingredients, through: :recipe
   has_many :reagents, through: :recipe
 
+  validates_presence_of :name
+  validate :only_one_instance_of_item_per_user_game, on: :create
+
+  def only_one_instance_of_item_per_user_game
+    if user_game.items.find_by(name: name)
+      errors.add(:item, "already exists for this game")
+    end
+  end
+
 end

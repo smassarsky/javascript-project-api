@@ -31,7 +31,7 @@ class LoadoutSerializer
               only: [:id, :name, :note]
             }
           },
-          only: [:quantity]
+          only: [:id, :quantity]
         }
       },
       only: [:id]
