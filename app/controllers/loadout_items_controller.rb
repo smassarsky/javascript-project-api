@@ -12,10 +12,12 @@ class LoadoutItemsController < ApplicationController
   def create
     byebug
     loadout = Loadout.find_by(id: params[:loadout_id])
-    if params[:item_id]
-      existing_item = Item.find_by(id: params[:item_id])
+    if params[:loadout_item][:item_attributes][:id]
+      puts "hi"
+      existing_item = Item.find_by(id: params[:loadout_item][:item_attributes][:id])
       if exists_and_owner?(loadout) && exists_and_owner?(existing_item)
-        loadout.loadout_items.build(item: existing_item, quantity: params[:item][:quantity])
+        puts "hi"
+        loadout.loadout_items.build(loadout_item_params)
         if loadout.save
           render json: ItemSerializer.new(existing_item).new_to_serialized_json
         else

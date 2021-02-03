@@ -4,6 +4,13 @@ class ItemSerializer
     @item = item_obj
   end
 
+  def truncated_to_serialized_json
+    options = {
+      only: [:id, :name, :note]
+    }
+    @item.to_json(options)
+  end
+
   def new_to_serialized_json
     options = {
       only: [:id, :name, :quantity, :note]

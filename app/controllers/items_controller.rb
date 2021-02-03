@@ -1,10 +1,13 @@
 class ItemsController < ApplicationController
 
   def index
-    if params[:loadout_id]
-      loadout = Loadout.find_by(id: params[:loadout_id])
-      if exists_and_owner?(loadout)
-        render json: LoadoutSerializer.new(loadout).items_to_serialized_json
+    user_game = UserGame.find_by(id: params[:user_game_id])
+    if exists_and_owner?(user_game)
+      items = Item.where(user_game: user_game)
+      if params[:ingredients_also]
+        render json: ItemSerializer.new(items).full_to_serialized_json
+      else
+        render json: ItemSerializer.new(items).truncated_to_serialized_json
       end
     end
   end

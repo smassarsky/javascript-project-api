@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   resources :games, only: [:index, :show]
 
-  resources :user_games, only: [:index, :show, :create, :destroy]
+  resources :user_games, only: [:index, :show, :create, :destroy] do 
+    resources :items, only: [:index]
+  end
 
   resources :loadouts, only: [:show, :create, :update, :destroy] do 
     resources :loadout_items, only: [:index, :create]

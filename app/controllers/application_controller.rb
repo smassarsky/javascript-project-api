@@ -21,8 +21,10 @@ class ApplicationController < ActionController::API
       true
     elsif thing
       render json: { error: "Not Authorized"}, status: 403
+      return false
     else
       render json: { error: "Not Found"}, status: 404
+      return false
     end
   end
 
