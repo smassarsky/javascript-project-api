@@ -10,30 +10,20 @@ class LoadoutItemsController < ApplicationController
   end
 
   def create
-    byebug
-    loadout = Loadout.find_by(id: params[:loadout_id])
-    if params[:loadout_item][:item_attributes][:id]
-      puts "hi"
-      existing_item = Item.find_by(id: params[:loadout_item][:item_attributes][:id])
-      if exists_and_owner?(loadout) && exists_and_owner?(existing_item)
-        puts "hi"
-        loadout.loadout_items.build(loadout_item_params)
-        if loadout.save
-          render json: ItemSerializer.new(existing_item).new_to_serialized_json
-        else
-          render json: { error: loadout.errors.full_messages }
-        end
-      end
+    loadout = Loadout.find_by(id: params[:loadout_item][:loadout_id])
+    if params[:loadout_item][:item_id]
+      existing_item = Item.find_by(id: params[:loadout_item][:item_id])
+      return if !exists_and_owner?(loadout) || !exists_and_owner?(existing_item)
     else
-      if exists_and_owner?(loadout)
-        loadout_item = loadout.loadout_items.build(loadout_item_params)
-        if loadout_item.save
-          render json: LoadoutItemSerializer.new(loadout_item).to_serialized_json
-        else
-          render json: { error: loadout_item.errors.full_messages }
-        end
-      end
+      return if !exists_and_owner?(loadout)
     end
+      loadout_item = LoadoutItem.new(loadout_item_params)
+      if loadout_item.save
+        render json: LoadoutItemSerializer.new(loadout_item).to_serialized_json
+      else
+        render json: { error: loadout_item.errors.full_messages }
+      end
+
   end
 
   def update
@@ -58,11 +48,7 @@ class LoadoutItemsController < ApplicationController
   private
 
   def loadout_item_params
-    params.require(:loadout_item).permit(:quantity, item_attributes: [:id, :name, :note, :user_game_id])
-  end
-
-  def item_params
-    params.require(:item).permit(:name, :note)
+    params.require(:loadout_item).permit(:loadout_id, :item_id, :quantity, item_attributes: [:id, :name, :note, :user_game_id])
   end
 
  end

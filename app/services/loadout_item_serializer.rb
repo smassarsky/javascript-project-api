@@ -8,7 +8,7 @@ class LoadoutItemSerializer
     puts @loadout_item
     options = {
       include: [:item],
-      except: [:loadout_id]
+      except: [:loadout_id, :item_id]
     }
     @loadout_item.to_json(options)
   end

@@ -10,10 +10,5 @@ class Loadout < ApplicationRecord
   has_many :recipes, through: :items
   has_many :ingredients, through: :recipes
 
-  validate :name_unique_per_usergame
-
-  def name_unique_per_usergame
-    errors.add(:name, "already used") if user_game.loadouts.find_by(name: name)
-  end
-
+  validates_uniqueness_of :name, scope: :user_game_id
 end

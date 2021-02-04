@@ -20,6 +20,6 @@ Rails.application.routes.draw do
 
   resources :items, only: [:create, :update, :destroy]
 
-  resources :loadout_items, only: [:update, :destroy]
+  resources :loadout_items, only: [:create, :update, :destroy]
 
 end
