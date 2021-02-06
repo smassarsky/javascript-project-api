@@ -6,8 +6,12 @@ class IngredientSerializer
 
   def to_serialized_json
     options = {
-      include: [:item],
-      only: [:quantity]
+      include: {
+        reagent: {
+          only: [:id, :name, :note]
+        }
+      },
+      only: [:id, :quantity]
     }
     @ingredient.to_json(options)
   end

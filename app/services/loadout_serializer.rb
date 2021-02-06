@@ -22,10 +22,10 @@ class LoadoutSerializer
                 ingredients: {
                   include: {
                     reagent: {
-                      only: [:id, :name]
+                      only: [:id, :name, :note]
                     }
                   },
-                  only: [:quantity]
+                  only: [:id, :quantity]
                 }
               },
               only: [:id, :name, :note]

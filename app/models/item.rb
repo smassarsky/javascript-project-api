@@ -5,9 +5,8 @@ class Item < ApplicationRecord
   has_many :loadout_items
   has_many :loadouts, through: :loadout_items
 
-  has_one :recipe
-  has_many :ingredients, through: :recipe
-  has_many :reagents, through: :recipe
+  has_many :ingredients
+  has_many :reagents, through: :ingredients
 
   validates_presence_of :name
   validates_uniqueness_of :name, scope: :user_game_id

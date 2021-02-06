@@ -22,4 +22,6 @@ Rails.application.routes.draw do
 
   resources :loadout_items, only: [:create, :update, :destroy]
 
+  resources :ingredients, only: [:create, :update, :destroy]
+
 end
