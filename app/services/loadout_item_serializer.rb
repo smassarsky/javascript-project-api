@@ -7,8 +7,22 @@ class LoadoutItemSerializer
   def to_serialized_json
     puts @loadout_item
     options = {
-      include: [:item],
-      except: [:loadout_id, :item_id]
+      include: {
+        item: {
+          include: {
+            ingredients: {
+              include: {
+                reagent: {
+                  only: [:id, :name, :note]
+                }
+              },
+              only: [:id, :quantity]
+            }
+          },
+          only: [:id, :name, :note]
+        }
+      },
+      only: [:id, :quantity]
     }
     @loadout_item.to_json(options)
   end

@@ -10,5 +10,6 @@ class Loadout < ApplicationRecord
   has_many :recipes, through: :items
   has_many :ingredients, through: :recipes
 
+  validates_presence_of :name
   validates_uniqueness_of :name, scope: :user_game_id
 end
