@@ -33,10 +33,4 @@ class ItemSerializer
     @item.to_json(options)
   end
 
-  private
-
-  def ingredients
-    IngredientSerializer.new(@item.ingredients).to_serialized_json
-  end
-
 end

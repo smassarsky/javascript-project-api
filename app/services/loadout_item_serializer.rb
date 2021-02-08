@@ -27,10 +27,4 @@ class LoadoutItemSerializer
     @loadout_item.to_json(options)
   end
 
-  private
-
-  def item
-    ItemSerializer.new(@loadout_item.item).to_serialized_json
-  end
-
 end

@@ -46,9 +46,4 @@ class LoadoutSerializer
     @loadout.to_json(options)
   end
 
-
-  # def the_items
-  #   LoadoutItemSerializer.new(@loadout.loadout_items).to_serialized_json
-  # end
-
 end

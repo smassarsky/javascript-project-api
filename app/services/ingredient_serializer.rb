@@ -16,10 +16,4 @@ class IngredientSerializer
     @ingredient.to_json(options)
   end
 
-  private
-
-  def item
-    ItemSerializer.new(@ingredient.reagent).reagent_to_serialized_json
-  end
-
 end

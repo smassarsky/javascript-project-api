@@ -13,7 +13,6 @@ class IngredientsController < ApplicationController
   end
 
   def update
-    byebug
     ingredient = Ingredient.find_by(id: params[:id])
     if exists_and_owner?(ingredient)
       if ingredient.update(ingredient_params)
