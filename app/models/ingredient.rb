@@ -1,5 +1,7 @@
 class Ingredient < ApplicationRecord
   belongs_to :item
+  has_one :user, through: :item
+
   belongs_to :reagent, class_name: "Item"
 
   accepts_nested_attributes_for :reagent

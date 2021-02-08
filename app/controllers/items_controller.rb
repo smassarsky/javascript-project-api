@@ -20,10 +20,6 @@ class ItemsController < ApplicationController
 
   end
 
-  def remove
-
-  end
-
   def destroy
     item = item.find_by(id: params[:id])
     if exists_and_owner?(item)
